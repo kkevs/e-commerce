@@ -73,11 +73,15 @@
 						<div class="collapse navbar-collapse" id="mainNav">
 							<ul class="nav main-menu navbar-nav">
 								<p:menubar id="menuBar" style="background-color: white;">
-									<p:menuitem value="Home" />
-									<p:menuitem value="clock" update=":form:pageCenterLocation"
-										action="#{productBean.chooseCategory(1)}" />
-									<p:menuitem value="Led" update=":form:pageCenterLocation"
-										action="#{productBean.chooseCategory(2)}" />
+									<p:menuitem value="Home" icon="ui-icon-home" action="index.xhtml" />
+
+									<p:submenu label="Category">
+										<p:menuitem value="clock" update=":form:pageCenterLocation"
+											action="#{productBean.chooseCategory(1)}" />
+										<p:menuitem value="Led" update=":form:pageCenterLocation"
+											action="#{productBean.chooseCategory(2)}" />
+									</p:submenu>
+
 
 									<p:menuitem value="About us"
 										action="#{productBean.chooseCategory(3)}"

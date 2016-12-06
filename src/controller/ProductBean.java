@@ -1,24 +1,34 @@
 package controller;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+
+import dao.ProductDaoImlp;
 import model.Category;
+import model.Product;
 
 @ManagedBean
-@SessionScoped
 public class ProductBean {
 	private String formPath;
 	private Category category = new Category();
 
+	ProductDaoImlp daoImlp = new ProductDaoImlp();
+	Product product = new Product();
+
+	List<Product> list;
+
 	public ProductBean() {
 		formPath = "home.xhtml";
+
 	}
 
 	public void chooseCategory(int categoryId) {
 
 		formPath = "product.xhtml";
-
+		list = new ArrayList<Product>();
+		list = daoImlp.allProduct();
 		switch (categoryId) {
 		case 3:
 			formPath = "home.xhtml";
@@ -27,6 +37,14 @@ public class ProductBean {
 			formPath = "login.xhtml";
 
 		}
+	}
+
+	public List<Product> getList() {
+		return list;
+	}
+
+	public void setList(List<Product> list) {
+		this.list = list;
 	}
 
 	public String getFormPath() {
@@ -43,6 +61,10 @@ public class ProductBean {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public void addProduct() {
+		daoImlp.addProduct(product);
 	}
 
 }

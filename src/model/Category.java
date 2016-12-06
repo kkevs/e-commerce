@@ -27,6 +27,13 @@ public class Category {
 
 	private List<Product> products;
 
+	public Category() {
+	}
+
+	public Category(String name) {
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
 	}

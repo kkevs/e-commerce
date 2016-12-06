@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_product")
+@Table(name = "tbl_product")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +18,21 @@ public class Product {
 	private String name;
 	private int piece;
 	private double price;
-	private String renk;
+	private String color;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Category category;
+
+	public Product() {
+	}
+
+	public Product(String name, int piece, double price, String color, Category category) {
+		this.name = name;
+		this.piece = piece;
+		this.price = price;
+		this.color = color;
+		this.category = category;
+	}
 
 	public Category getCategory() {
 		return category;
@@ -63,12 +74,12 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getRenk() {
-		return renk;
+	public String getColor() {
+		return color;
 	}
 
-	public void setRenk(String renk) {
-		this.renk = renk;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

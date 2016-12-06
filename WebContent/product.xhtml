@@ -3,5 +3,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p>product..</p>
+	<h:dataTable value="#{productBean.list}" var="a">
+		<h:column>
+			name: <h:outputLabel value="#{a.name}" />
+			price: <h:outputLabel value="#{a.price}" />
+		</h:column>
+	</h:dataTable>
 </ui:composition>
