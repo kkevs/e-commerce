@@ -5,6 +5,6 @@ import model.User;
 public interface UserDao {
 	public void saveUser(User user);
 
-//	public void controlUser();
+	public int controlUser(User user);
 
 }

@@ -5,7 +5,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 <h:head>
 	<link rel='stylesheet prefetch'
 		href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
@@ -13,152 +15,7 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-	<style type="text/css">
-@import
-	url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,400,700)
-	;
-
-body {
-	background: #e9eaed;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Open Sans Condensed', sans-serif, sans-serif;
-}
-
-.container {
-	
-}
-
-.wrapper {
-	
-}
-
-#header {
-	border: 1px solid #ddd;
-	margin-bottom: 20px;
-}
-
-.navbar {
-	border-radius: 0;
-	margin-bottom: 0;
-	border: none;
-	font-family: 'Open Sans Condensed', sans-serif, sans-serif;
-}
-
-.navbar-header {
-	
-}
-
-.navbar-brand {
-	width: 160px;
-	height: 160px;
-	float: left;
-	padding: 0;
-	margin-top: -130px;
-	overflow: hidden;
-	border: 3px solid #eee;
-	margin-left: 15px;
-	background: #333;
-	text-align: center;
-	line-height: 160px;
-	color: #fff !important;
-	font-size: 2em;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-
-.site-name {
-	color: #fff;
-	font-size: 2.4em;
-	float: left;
-	margin-top: -65px !important;
-	margin-left: 15px;
-	font-family: 'Open Sans Condensed', sans-serif, sans-serif;
-}
-
-.site-description {
-	color: #fff;
-	font-size: 1.3em;
-	float: left;
-	margin-top: -30px !important;
-	margin-left: 15px;
-}
-
-.main-menu {
-	position: absolute;
-	left: 190px;
-}
-
-.slider, .carousel {
-	max-height: 200px;
-	overflow: hidden;
-}
-
-.carousel-control .fa-angle-left, .carousel-control .fa-angle-right {
-	position: absolute;
-	top: 50%;
-	font-size: 2em;
-	z-index: 5;
-	display: inline-block;
-}
-
-.carousel-control {
-	background-color: transparent;
-	background-image: none !important;
-}
-
-.carousel-control:hover, .carousel-control:focus {
-	color: #fff;
-	text-decoration: none;
-	background-color: transparent !important;
-	background-image: none !important;
-	outline: 0;
-}
-
-@media ( max-width : 768px) {
-	.navbar-brand {
-		max-width: 100px;
-		max-height: 100px;
-		float: left;
-		margin-top: -65px;
-		margin-left: 15px;
-		-webkit-transition: all 0.3s ease-in-out;
-		-moz-transition: all 0.3s ease-in-out;
-		-o-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out;
-	}
-	.navbar {
-		border-radius: 0;
-		margin-bottom: 0;
-		border: none;
-	}
-	.main-menu {
-		left: 0;
-		position: relative;
-	}
-}
-
-@media ( max-width : 490px) {
-	.site-name {
-		color: #fff;
-		font-size: 1.5em;
-		float: left;
-		line-height: 20px;
-		margin-top: -100px !important;
-		margin-left: 125px;
-	}
-	.site-description {
-		color: #fff;
-		font-size: 1.3em;
-		float: left;
-		margin-top: -80px !important;
-		margin-left: 125px;
-	}
-}
-</style>
+	<link rel="stylesheet" href="../resources/css/style.css" />
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
 </h:head>
@@ -215,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="mainNav">
 							<ul class="nav main-menu navbar-nav">
-								<p:menubar id="menuBar" style="background-color: #ffcccc;">
+								<p:menubar id="menuBar" style="background-color: white;">
 									<p:menuitem value="Home" />
 									<p:menuitem value="clock" update=":form:pageCenterLocation"
 										action="#{productBean.chooseCategory(1)}" />
@@ -225,8 +82,14 @@ h1, h2, h3, h4, h5, h6 {
 									<p:menuitem value="About us"
 										action="#{productBean.chooseCategory(3)}"
 										update=":form:pageCenterLocation" />
-									<p:menuitem value="Login" update=":form:pageCenterLocation"
-										action="#{productBean.chooseCategory(4)}" />
+									<c:if test="#{userBean.b==false}">
+
+										<p:menuitem value="Login" update=":form:pageCenterLocation"
+											action="#{productBean.chooseCategory(4)}" />
+									</c:if>
+									<c:if test="#{userBean.b==true}">
+										<p:menuitem value="Logout" action="#{userBean.logout}" />
+									</c:if>
 								</p:menubar>
 							</ul>
 							<ul class="nav  navbar-nav navbar-right">

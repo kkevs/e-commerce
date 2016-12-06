@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_user")
+@Table(name = "tbl_user")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,17 +17,19 @@ public class User {
 	private String name;
 	private String surname;
 	private String user_name;
+	private String pwd;
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
+
 	public User() {
 	}
 
-	public User(String name, String surname, String user_name) {
+	public User(String name, String surname, String user_name, String pwd) {
 		this.name = name;
 		this.surname = surname;
 		this.user_name = user_name;
+		this.pwd = pwd;
 	}
 
 	public int getId() {
@@ -68,6 +70,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 }
