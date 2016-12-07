@@ -9,7 +9,7 @@ import model.Role;
 import model.User;
 import util.HibernateUtil;
 
-public class UserDaoImlp implements UserDao {
+public class UserDaoImpl implements UserDao {
 
 	Session session = HibernateUtil.getSessionFactory().openSession();
 

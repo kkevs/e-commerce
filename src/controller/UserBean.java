@@ -5,14 +5,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import dao.UserDaoImlp;
+import dao.UserDaoImpl;
 import model.User;
 
 @ManagedBean
 @SessionScoped
 public class UserBean {
 	User user = new User();
-	UserDaoImlp daoImlp = new UserDaoImlp();
+	UserDaoImpl daoImlp = new UserDaoImpl();
 
 	boolean b;
 
@@ -27,11 +27,11 @@ public class UserBean {
 		this.user = user;
 	}
 
-	public UserDaoImlp getDaoImlp() {
+	public UserDaoImpl getDaoImlp() {
 		return daoImlp;
 	}
 
-	public void setDaoImlp(UserDaoImlp daoImlp) {
+	public void setDaoImlp(UserDaoImpl daoImlp) {
 		this.daoImlp = daoImlp;
 	}
 

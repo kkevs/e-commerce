@@ -19,6 +19,7 @@ public class Product {
 	private int piece;
 	private double price;
 	private String color;
+	private String feature;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Category category;
@@ -26,12 +27,12 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String name, int piece, double price, String color, Category category) {
+	public Product(String name, int piece, double price, String color, String feature) {
 		this.name = name;
 		this.piece = piece;
 		this.price = price;
 		this.color = color;
-		this.category = category;
+		this.feature = feature;
 	}
 
 	public Category getCategory() {
@@ -80,6 +81,14 @@ public class Product {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
 
 }

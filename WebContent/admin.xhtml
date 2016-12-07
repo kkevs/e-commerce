@@ -9,5 +9,38 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head></h:head>
-<h:body></h:body>
+<h:body>
+	<h:form>
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Name:" />
+			<p:inputText value="#{productBean.product.name}" />
+
+			<p:outputLabel value="Piece:" />
+			<p:inputText value="#{productBean.product.piece}" />
+
+			<p:outputLabel value="Price:" />
+			<p:inputText value="#{productBean.product.price}" />
+
+			<p:outputLabel value="Color:" />
+			<p:inputText value="#{productBean.product.color}" />
+
+			<p:outputLabel value="Feature:" />
+			<p:inputTextarea value="#{productBean.product.feature}" />
+
+			<p:outputLabel value="Category: " />
+			<p:selectOneMenu id="category" value="#{productBean.category}"
+				style="width:150px">
+				<f:selectItem itemLabel="Select category" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{productBean.categories}" var="cat"
+					itemValue="#{cat.id}" itemLabel="#{cat.name}" />
+			</p:selectOneMenu>
+
+			<p:commandButton value="save" action="#{productBean.addProduct}" />
+		</p:panelGrid>
+
+	</h:form>
+
+
+</h:body>
 </html>
