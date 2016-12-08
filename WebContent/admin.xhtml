@@ -7,7 +7,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
 <h:head></h:head>
 <h:body>
 	<h:form>
@@ -28,7 +27,7 @@
 			<p:inputTextarea value="#{productBean.product.feature}" />
 
 			<p:outputLabel value="Category: " />
-			<p:selectOneMenu id="category" value="#{productBean.category}"
+			<p:selectOneMenu id="category" value="#{productBean.category.id}"
 				style="width:150px">
 				<f:selectItem itemLabel="Select category" itemValue=""
 					noSelectionOption="true" />
@@ -36,11 +35,8 @@
 					itemValue="#{cat.id}" itemLabel="#{cat.name}" />
 			</p:selectOneMenu>
 
-			<p:commandButton value="save" action="#{productBean.addProduct}" />
+			<p:commandButton value="save" action="#{productBean.saveProduct()}" />
 		</p:panelGrid>
-
 	</h:form>
-
-
 </h:body>
 </html>

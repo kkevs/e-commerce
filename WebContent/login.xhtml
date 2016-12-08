@@ -3,15 +3,32 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p>
-		<h:panelGrid style=" border: 1">
+	<h:form>
+		<h:panelGrid>
 			<h:outputText value="Login" />
 			<h:outputText value="Username" />
 			<h:inputText value="#{userBean.user.user_name}" />
 			<h:outputText value="Password" />
 			<h:inputSecret value="#{userBean.user.pwd}" />
-			<h:commandButton action="#{userBean.controlUser}" value="Login">
-			</h:commandButton>
+			<br />
+			<h:commandButton action="#{userBean.controlUser}" value="Login" />
+			<br />
+		<!-- 	<h:commandButton value="Register" onclick="PF('dlg').show();" /> -->
 		</h:panelGrid>
-	</p>
+
+		<!-- <p:dialog header="Register" widgetVar="dlg">
+			<h:panelGrid>
+				<h:outputText value="Name" />
+				<h:inputText value="#{userBean.user.name}" />
+				<h:outputText value="Surname" />
+				<h:inputText value="#{userBean.user.surname}" />
+				<h:outputText value="Username" />
+				<h:inputText value="#{userBean.user.user_name}" />
+				<h:outputText value="Password" />
+				<h:inputSecret value="#{userBean.user.pwd}" />
+				<br />
+				<h:commandButton action="#{userBean.saveUser}" value="Save" />
+			</h:panelGrid>
+		</p:dialog> -->
+	</h:form>
 </ui:composition>

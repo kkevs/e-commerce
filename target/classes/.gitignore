@@ -2,5 +2,6 @@
 /dao/
 /hibernate.cfg.xml
 /model/
+/service/
 /test/
 /util/

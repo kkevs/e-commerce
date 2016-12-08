@@ -10,11 +10,14 @@ public interface ProductDao {
 
 	public void deleteProduct(Product product);
 
-	public List<Product> allProduct();
+	public List<Product> getAllProduct();
 
-	public void addProduct(Product product);
-
-	public List<Product> getByCategory(Category category);
-
-	public List<Category> allCategory();
+	public void saveProduct(Product product);
+	//
+	// public List<Product> getByCategory(Category category);
+	//
+	public List<Category> getAllCategory();
+	
+	public Category getCategoryById(int id);
 }
+

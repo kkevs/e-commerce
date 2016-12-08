@@ -15,7 +15,7 @@ public class ProductDaoImpl implements ProductDao {
 	Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public void addProduct(Product product) {
+	public void saveProduct(Product product) {
 		session.beginTransaction();
 		session.save(product);
 		session.getTransaction().commit();
@@ -39,34 +39,37 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> allProduct() {
-		session.beginTransaction();
+	public List<Product> getAllProduct() {
 		List<Product> p_list = new ArrayList<Product>();
 		Query query = session.createQuery("from Product");
 		p_list = query.list();
-		session.close();
 		return p_list;
 	}
 
-	@Override
-	public List<Product> getByCategory(Category category) {
-		session.beginTransaction();
-		List<Product> p_list = new ArrayList<Product>();
-		Query query = session.createQuery("from Product p where p.category.id=:id");
-		query.setParameter(0, category.getId());
-		p_list = query.list();
-		session.close();
-		return p_list;
-	}
+	// @Override
+	// public List<Product> getByCategory(Category category) {
+	// session.beginTransaction();
+	// List<Product> p_list = new ArrayList<Product>();
+	// Query query = session.createQuery("from Product p where
+	// p.category.id=:id");
+	// query.setParameter(0, category.getId());
+	// p_list = query.list();
+	// session.close();
+	// return p_list;
+	// }
 
 	@Override
-	public List<Category> allCategory() {
-		session.beginTransaction();
+	public List<Category> getAllCategory() {
 		List<Category> c_list = new ArrayList<Category>();
 		Query query = session.createQuery("from Category");
 		c_list = query.list();
-		session.close();
 		return c_list;
+	}
+
+	@Override
+	public Category getCategoryById(int id) {
+		Category category = (Category) session.get(Category.class, id);
+		return category;
 	}
 
 }

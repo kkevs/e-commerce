@@ -43,9 +43,10 @@ public class UserBean {
 		this.b = b;
 	}
 
-	public void saveUser() {
-		daoImlp.saveUser(user);
-	}
+//	public String saveUser() {
+//		daoImlp.saveUser(user);
+//		return "index?faces-redirect=true";
+//	}
 
 	public String controlUser() {
 		int i = daoImlp.controlUser(user);
@@ -70,9 +71,9 @@ public class UserBean {
 		return "error?faces-redirect=true";
 	}
 
-	 public String logout() {
-	 FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	 return "/index.xhtml?faces-redirect=true";
-	 }
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/index.xhtml?faces-redirect=true";
+	}
 
 }

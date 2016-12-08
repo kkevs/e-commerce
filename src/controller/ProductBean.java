@@ -4,39 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
-import dao.ProductDaoImpl;
 import model.Category;
 import model.Product;
+import service.ProductServiceImpl;
 
 @ManagedBean
+@SessionScoped
 public class ProductBean {
-	private String formPath;
+	private String formPath = "home.xhtml";
 
 	private Category category = new Category();
 	Product product = new Product();
-	ProductDaoImpl daoImlp = new ProductDaoImpl();
 
 	List<Category> categories = new ArrayList<Category>();
-	List<Product> list;
+	List<Product> list = new ArrayList<Product>();
+
+	ProductServiceImpl impl = new ProductServiceImpl();
 
 	public ProductBean() {
-		formPath = "home.xhtml";
-		categories = daoImlp.allCategory();
+		categories = impl.getAllCategories();
 	}
 
 	public void chooseCategory(int categoryId) {
 
 		formPath = "product.xhtml";
-		list = new ArrayList<Product>();
-		list = daoImlp.allProduct();
+		list = impl.getAllProduct();
 
 		switch (categoryId) {
 		case 3:
 			formPath = "home.xhtml";
 			break;
 		case 4:
+			formPath = "aboutus.xhtml";
+			break;
+		case 5:
 			formPath = "login.xhtml";
+			break;
 
 		}
 	}
@@ -81,11 +86,9 @@ public class ProductBean {
 		this.categories = categories;
 	}
 
-	public void addProduct() {
-		System.out.println("deneme..");
-		System.out.println(category.getName());
-		// product.setCategory(category);
-		// daoImlp.addProduct(product);
+	public void saveProduct() {
+		product.setCategory(impl.getCategoryById(category.getId()));
+		impl.saveProduct(product);
 	}
 
 }
