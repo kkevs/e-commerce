@@ -12,9 +12,10 @@ import model.User;
 @SessionScoped
 public class UserBean {
 	User user = new User();
+	User user2 = new User();
 	UserDaoImpl daoImlp = new UserDaoImpl();
 
-	boolean b;
+	boolean b=false;
 
 	public UserBean() {
 	}
@@ -25,6 +26,14 @@ public class UserBean {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public User getUser2() {
+		return user2;
+	}
+
+	public void setUser2(User user2) {
+		this.user2 = user2;
 	}
 
 	public UserDaoImpl getDaoImlp() {
@@ -43,10 +52,10 @@ public class UserBean {
 		this.b = b;
 	}
 
-//	public String saveUser() {
-//		daoImlp.saveUser(user);
-//		return "index?faces-redirect=true";
-//	}
+	 public String saveUser() {
+	 daoImlp.saveUser(user);
+	 return "index?faces-redirect=true";
+	 }
 
 	public String controlUser() {
 		int i = daoImlp.controlUser(user);

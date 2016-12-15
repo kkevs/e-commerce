@@ -1,5 +1,7 @@
 package model;
 
+import java.io.OutputStream;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Product {
 	private double price;
 	private String color;
 	private String feature;
+	private String image_path;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
@@ -88,6 +91,14 @@ public class Product {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public String getImage_path() {
+		return image_path;
+	}
+
+	public void setImage_path(String out) {
+		this.image_path = out;
 	}
 
 }

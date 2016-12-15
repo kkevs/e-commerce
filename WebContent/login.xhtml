@@ -5,30 +5,30 @@
 	xmlns:p="http://primefaces.org/ui">
 	<h:form>
 		<h:panelGrid>
-			<h:outputText value="Login" />
-			<h:outputText value="Username" />
-			<h:inputText value="#{userBean.user.user_name}" />
-			<h:outputText value="Password" />
-			<h:inputSecret value="#{userBean.user.pwd}" />
+			<p:outputLabel value="Login" />
+			<p:outputLabel value="Username" />
+			<p:inputText value="#{userBean.user.user_name}" />
+			<p:outputLabel value="Password" />
+			<p:password value="#{userBean.user.pwd}" />
 			<br />
-			<h:commandButton action="#{userBean.controlUser}" value="Login" />
+			<p:commandButton action="#{userBean.controlUser}" value="Login" />
 			<br />
-		<!-- 	<h:commandButton value="Register" onclick="PF('dlg').show();" /> -->
+			<p:commandButton value="Register" oncomplete="PF('dlg').show();" />
 		</h:panelGrid>
 
-		<!-- <p:dialog header="Register" widgetVar="dlg">
+		<p:dialog header="Register" widgetVar="dlg">
 			<h:panelGrid>
-				<h:outputText value="Name" />
-				<h:inputText value="#{userBean.user.name}" />
-				<h:outputText value="Surname" />
-				<h:inputText value="#{userBean.user.surname}" />
-				<h:outputText value="Username" />
-				<h:inputText value="#{userBean.user.user_name}" />
-				<h:outputText value="Password" />
-				<h:inputSecret value="#{userBean.user.pwd}" />
+				<p:outputLabel value="Name" />
+				<p:inputText value="#{userBean.user2.name}" />
+				<p:outputLabel value="Surname" />
+				<p:inputText value="#{userBean.user2.surname}" />
+				<p:outputLabel value="Username" />
+				<p:inputText value="#{userBean.user2.user_name}" />
+				<p:outputLabel value="Password" />
+				<p:password value="#{userBean.user2.pwd}" />
 				<br />
-				<h:commandButton action="#{userBean.saveUser}" value="Save" />
+				<p:commandButton action="#{userBean.saveUser}" value="Save" />
 			</h:panelGrid>
-		</p:dialog> -->
+		</p:dialog>
 	</h:form>
 </ui:composition>

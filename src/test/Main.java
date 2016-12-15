@@ -14,7 +14,7 @@ public class Main {
 
 		User user = new User("kevser", "kose", "kkevs", "123");
 
-		// daoImlp.saveUser(user);
+		daoImlp.saveUser(user);
 
 		// Category category = new Category("saat");
 

@@ -10,6 +10,7 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
+		<p:growl id="messages" showDetail="true" />
 		<p:panelGrid columns="2">
 			<p:outputLabel value="Name:" />
 			<p:inputText value="#{productBean.product.name}" />
@@ -34,7 +35,10 @@
 				<f:selectItems value="#{productBean.categories}" var="cat"
 					itemValue="#{cat.id}" itemLabel="#{cat.name}" />
 			</p:selectOneMenu>
-
+			<p:fileUpload fileUploadListener="#{productBean.handleFileUpload}"
+				mode="advanced" dragDropSupport="false" update="messages"
+				sizeLimit="1000000" fileLimit="3"
+				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 			<p:commandButton value="save" action="#{productBean.saveProduct()}" />
 		</p:panelGrid>
 	</h:form>

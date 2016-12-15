@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 	public int controlUser(User user) {
 		Query query = session.createQuery("from User where user_name=? and pwd=?");
 		query.setString(0, user.getUser_name()).setString(1, user.getPwd());
-		List list = query.list();
+		List<?> list = query.list();
 
 		if (list.size() == 0) {
 			return 0;
