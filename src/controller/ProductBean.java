@@ -10,26 +10,29 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.RowEditEvent;
 
 import model.Category;
 import model.Product;
 import service.ProductServiceImpl;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ProductBean {
 	private String formPath = "home.xhtml";
 
 	private Category category = new Category();
 	Product product = new Product();
+	Product selectedProduct = new Product();
 
 	List<Category> categories = new ArrayList<Category>();
-	List<Product> list = new ArrayList<Product>();
+	List<Product> list_product = new ArrayList<Product>();
+	List<Product> list_admin = new ArrayList<Product>();
 
 	ProductServiceImpl impl = new ProductServiceImpl();
 
@@ -41,12 +44,13 @@ public class ProductBean {
 
 	public ProductBean() {
 		categories = impl.getAllCategories();
+		list_admin = impl.getAllProduct();
 	}
 
 	public void chooseCategory(int categoryId) {
 
 		formPath = "product.xhtml";
-		list = impl.getAllProduct();
+		list_product = impl.getAllProduct();
 
 		switch (categoryId) {
 		case 3:
@@ -62,12 +66,12 @@ public class ProductBean {
 		}
 	}
 
-	public List<Product> getList() {
-		return list;
+	public List<Product> getList_product() {
+		return list_product;
 	}
 
-	public void setList(List<Product> list) {
-		this.list = list;
+	public void setList_product(List<Product> list_product) {
+		this.list_product = list_product;
 	}
 
 	public String getFormPath() {
@@ -94,12 +98,28 @@ public class ProductBean {
 		this.product = product;
 	}
 
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(Product selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
 	public List<Category> getCategories() {
 		return categories;
 	}
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+	public List<Product> getList_admin() {
+		return list_admin;
+	}
+
+	public void setList_admin(List<Product> list_admin) {
+		this.list_admin = list_admin;
 	}
 
 	public void saveProduct() {
@@ -112,7 +132,6 @@ public class ProductBean {
 	public void handleFileUpload(FileUploadEvent event) {
 		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String realPath = ctx.getRealPath("/");
-
 
 		FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -127,7 +146,6 @@ public class ProductBean {
 	public void copyFile(String fileName, InputStream in) {
 		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String realPath = ctx.getRealPath("/");
-
 
 		try {
 			// write the inputStream to a FileOutputStream
@@ -148,6 +166,22 @@ public class ProductBean {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public void deleteProduct() throws Exception {
+		impl.deleteProduct(selectedProduct);
+		selectedProduct = null;
+	}
+
+	public void onRowEdit(RowEditEvent event) throws Exception {
+		impl.updateProduct(event);
+		FacesMessage msg = new FacesMessage("Product Edited", ((Product) event.getObject()).getName());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onRowCancel(RowEditEvent event) throws Exception {
+		FacesMessage msg = new FacesMessage("Prdocut Canceled", ((Product) event.getObject()).getName());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 }

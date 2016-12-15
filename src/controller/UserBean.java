@@ -69,7 +69,7 @@ public class UserBean {
 		}
 		if (i == 1) {
 			b = true;
-			return "admin?faces-redirect=true";
+			return "admin.xhtml?faces-redirect=true";
 
 		}
 		if (i == 2) {

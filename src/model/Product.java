@@ -1,7 +1,5 @@
 package model;
 
-import java.io.OutputStream;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

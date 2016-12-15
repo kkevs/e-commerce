@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import org.primefaces.event.RowEditEvent;
+
 import dao.ProductDaoImpl;
 import model.Category;
 import model.Product;
@@ -26,6 +28,15 @@ public class ProductServiceImpl implements ProductService {
 
 	public Category getCategoryById(int id) {
 		return daoImpl.getCategoryById(id);
+	}
+
+	@Override
+	public void deleteProduct(Product selectedProduct) {
+		daoImpl.deleteProduct(selectedProduct);
+	}
+
+	public void updateProduct(RowEditEvent event) {
+		daoImpl.updateProduct(event);
 	}
 
 }

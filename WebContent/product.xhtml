@@ -3,11 +3,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<h:dataTable value="#{productBean.list}" var="a">
+	<h:dataTable value="#{productBean.list_product}" var="a">
 		<h:column>
 			name: <h:outputLabel value="#{a.name}" />
 			price: <h:outputLabel value="#{a.price}" />
-			image:<h:graphicImage value="#{a.image_path}"/>
+			image:<h:graphicImage value="#{a.image_path}" />
 		</h:column>
 	</h:dataTable>
 </ui:composition>

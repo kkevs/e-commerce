@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.primefaces.event.RowEditEvent;
 
 import model.Category;
 import model.Product;
@@ -23,7 +24,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void updateProduct(Product product) {
+	public void updateProduct(RowEditEvent event) {
+		Product product = (Product) event.getObject();
 		session.beginTransaction();
 		session.merge(product);
 		session.getTransaction().commit();

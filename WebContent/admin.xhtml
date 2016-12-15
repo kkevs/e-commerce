@@ -39,8 +39,75 @@
 				mode="advanced" dragDropSupport="false" update="messages"
 				sizeLimit="1000000" fileLimit="3"
 				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-			<p:commandButton value="save" action="#{productBean.saveProduct()}" />
+			<p:commandButton value="save" action="#{productBean.saveProduct()}"
+				update="mydata" />
 		</p:panelGrid>
+		<br />
+		<p:dataTable var="item" id="mydata" value="#{productBean.list_admin}"
+			editable="true" rowKey="#{item.id}"
+			selection="#{productBean.selectedProduct}" selectionMode="single">
+
+			<p:ajax event="rowEdit" listener="#{productBean.onRowEdit}" />
+			<p:ajax event="rowEditCancel" listener="#{productBean.onRowCancel}" />
+
+			<p:column headerText="Name">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{item.name}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{item.name}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="piece">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{item.piece}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{item.piece}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="price">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{item.price}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{item.price}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="color">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{item.color}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{item.color}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="feature">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{item.feature}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{item.feature}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Options" style="width:50px">
+				<p:rowEditor />
+			</p:column>
+		</p:dataTable>
+		<p:contextMenu for="mydata">
+			<p:menuitem value="Delete" update="mydata" icon="ui-icon-close"
+				actionListener="#{productBean.deleteProduct}" />
+		</p:contextMenu>
 	</h:form>
 </h:body>
 </html>

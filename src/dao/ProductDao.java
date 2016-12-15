@@ -2,11 +2,13 @@ package dao;
 
 import java.util.List;
 
+import org.primefaces.event.RowEditEvent;
+
 import model.Category;
 import model.Product;
 
 public interface ProductDao {
-	public void updateProduct(Product product);
+	public void updateProduct(RowEditEvent event);
 
 	public void deleteProduct(Product product);
 
