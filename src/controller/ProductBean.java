@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -22,9 +23,11 @@ import model.Product;
 import service.ProductServiceImpl;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ProductBean {
 	private String formPath = "home.xhtml";
+
+	private Date date;
 
 	private Category category = new Category();
 	Product product = new Product();
@@ -49,21 +52,46 @@ public class ProductBean {
 
 	public void chooseCategory(int categoryId) {
 
-		formPath = "product.xhtml";
-		list_product = impl.getAllProduct();
-
 		switch (categoryId) {
+		case 1:
+			formPath = "product.xhtml";
+			list_product = impl.getAllProduct();
+			break;
+		case 2:
+			formPath = "product.xhtml";
+			list_product = impl.getProductById(1);
+			break;
 		case 3:
-			formPath = "home.xhtml";
+			formPath = "product.xhtml";
+			list_product = impl.getProductById(2);
 			break;
 		case 4:
-			formPath = "aboutus.xhtml";
+			formPath = "product.xhtml";
+			list_product = impl.getProductById(3);
 			break;
 		case 5:
+			formPath = "product.xhtml";
+			list_product = impl.getProductById(4);
+			break;
+		case 6:
+			formPath = "home.xhtml";
+			break;
+		case 7:
+			formPath = "aboutus.xhtml";
+			break;
+		case 8:
 			formPath = "login.xhtml";
 			break;
 
 		}
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public List<Product> getList_product() {

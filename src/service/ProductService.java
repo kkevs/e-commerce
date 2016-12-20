@@ -16,6 +16,8 @@ public interface ProductService {
 
 	public Category getCategoryById(int id);
 
+	public List<Product> getProductById(int id);
+
 	public void deleteProduct(Product selectedProduct);
 
 	public void updateProduct(RowEditEvent event);

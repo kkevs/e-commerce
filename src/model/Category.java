@@ -13,8 +13,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "tbl_category")
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY, region = "product")
 public class Category {
 
 	@Id

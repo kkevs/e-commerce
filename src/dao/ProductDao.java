@@ -15,11 +15,10 @@ public interface ProductDao {
 	public List<Product> getAllProduct();
 
 	public void saveProduct(Product product);
-	//
-	// public List<Product> getByCategory(Category category);
-	//
+
+	public List<Product> getProductById(int id);
+
 	public List<Category> getAllCategory();
-	
+
 	public Category getCategoryById(int id);
 }
-

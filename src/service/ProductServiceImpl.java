@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService {
 		daoImpl.updateProduct(event);
 	}
 
+	@Override
+	public List<Product> getProductById(int id) {
+		return daoImpl.getProductById(id);
+	}
+
 }
