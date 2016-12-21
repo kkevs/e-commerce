@@ -1,9 +1,6 @@
 package test;
 
-import dao.ProductDaoImpl;
 import dao.UserDaoImpl;
-import model.Category;
-import model.Product;
 import model.User;
 
 public class Main {

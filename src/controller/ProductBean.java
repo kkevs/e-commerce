@@ -5,13 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -23,9 +24,13 @@ import model.Product;
 import service.ProductServiceImpl;
 
 @ManagedBean
-@SessionScoped
-public class ProductBean {
+@ViewScoped
+public class ProductBean implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private String formPath = "home.xhtml";
+
+	private String fileImagePath;
 
 	private Date date;
 
@@ -39,13 +44,11 @@ public class ProductBean {
 
 	ProductServiceImpl impl = new ProductServiceImpl();
 
-	// private static String destination =
-	// "C:\\Users\\köse\\Documents\\workspace-sts-3.8.1.RELEASE1\\e-commerce\\WebContent\\resources\\product_image\\";
-
 	static ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 	private static String realPath = ctx.getRealPath("/");
 
 	public ProductBean() {
+		fileImagePath = new String();
 		categories = impl.getAllCategories();
 		list_admin = impl.getAllProduct();
 	}
@@ -150,17 +153,22 @@ public class ProductBean {
 		this.list_admin = list_admin;
 	}
 
+	public String getFileImagePath() {
+		return fileImagePath;
+	}
+
+	public void setFileImagePath(String fileImagePath) {
+		this.fileImagePath = fileImagePath;
+	}
+
 	public void saveProduct() {
 		product.setCategory(impl.getCategoryById(category.getId()));
-		product.setImage_path(realPath);
+		product.setImage_path("/resources/product_image/" + fileImagePath);
 		impl.saveProduct(product);
 
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
-		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-		String realPath = ctx.getRealPath("/");
-
 		FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		// Do what you want with the file
@@ -175,11 +183,11 @@ public class ProductBean {
 		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String realPath = ctx.getRealPath("/");
 
+		fileImagePath = fileName;
+
 		try {
 			// write the inputStream to a FileOutputStream
-			OutputStream out = new FileOutputStream(
-					new File(realPath + "image_" + fileName.substring(fileName.length() - 10, fileName.length())));
-			realPath = realPath + "image_" + fileName.substring(fileName.length() - 10, fileName.length());
+			OutputStream out = new FileOutputStream(new File(realPath + "resources\\product_image\\" + fileName));
 			int read = 0;
 			byte[] bytes = new byte[1024];
 

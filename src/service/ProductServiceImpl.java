@@ -1,5 +1,6 @@
 package service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.primefaces.event.RowEditEvent;
@@ -8,7 +9,8 @@ import dao.ProductDaoImpl;
 import model.Category;
 import model.Product;
 
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService, Serializable {
+	private static final long serialVersionUID = 1L;
 	ProductDaoImpl daoImpl = new ProductDaoImpl();
 
 	@Override

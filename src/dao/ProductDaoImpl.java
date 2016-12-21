@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,9 @@ import model.Category;
 import model.Product;
 import util.HibernateUtil;
 
-public class ProductDaoImpl implements ProductDao {
+public class ProductDaoImpl implements ProductDao, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override

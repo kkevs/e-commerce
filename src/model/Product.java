@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +18,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "tbl_product")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "product")
-public class Product {
+public class Product implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
