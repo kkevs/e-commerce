@@ -45,7 +45,7 @@ public class ProductBean implements Serializable {
 	ProductServiceImpl impl = new ProductServiceImpl();
 
 	static ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-	private static String realPath = ctx.getRealPath("/");
+	String realPath = ctx.getRealPath("/");
 
 	public ProductBean() {
 		fileImagePath = new String();
